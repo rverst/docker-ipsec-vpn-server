@@ -13,7 +13,7 @@ if [ -f etc/pre-up.sh ]; then
 fi
 
 docker run \
-    --name ipsec-vpn-server \
+    --name vpn-server \
     -p 500:500/udp \
     -p 4500:4500/udp \
     -v /lib/modules:/lib/modules:ro \
@@ -23,5 +23,5 @@ docker run \
     $EXTRA_ARGS \
     -v /lib/modules:/lib/modules:ro \
     -d --privileged \
-    --restart=always \
+    --restart=unless-stopped \
     mobilejazz/docker-ipsec-vpn-server
